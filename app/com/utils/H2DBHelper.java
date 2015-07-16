@@ -170,17 +170,19 @@ public class H2DBHelper {
 	public ArrayList<Event> getEvents(String category) throws SQLException {
 		ArrayList<Event> eventsa = new ArrayList();
 		
-		selectCategoryPS.setString(1, category);
+		selectEventPS.setString(1, category);
 		
-		ResultSet rs = selectCategoryPS.executeQuery();
+		ResultSet rs = selectEventPS.executeQuery();
 
 		while (rs.next()) {
 
 			String eventName = rs.getString("eventName");
 			String time = rs.getString("time");
+			
 			Event event = new Event();
 			event.eventName = eventName;
 			event.eventSchedule = time;
+			
 			eventsa.add(event);
 			System.out.println("event : " + eventName);
 

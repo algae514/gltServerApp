@@ -3,14 +3,17 @@ package controllers;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import play.libs.Json;
+import play.libs.Jsonp;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.TestPage;
 import views.html.addAdminComment;
 import views.html.addCategory;
 import views.html.addEvent;
 import views.html.addUserComment;
-import views.html.TestPage;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.models.Comment;
 import com.models.Event;
 import com.utils.H2DBHelper;
@@ -115,12 +118,22 @@ public class Application extends Controller {
 
 	public static Result getEvent(String category) {
 		try {
-			ArrayList<Event> categories = dbUtil.getEvents(category);
+			ArrayList<Event> events = dbUtil.getEvents(category);
+			
+			JsonNode json = Json.toJson(events);
+			response().setHeader("Access-Control-Allow-Origin", "*");
+			System.out.println(" sending json "+json);
+			return ok(json);
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return ok(addCategory.render());
+		
+		 
+		
+		return ok();
 	}
 
 		

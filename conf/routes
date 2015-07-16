@@ -20,10 +20,10 @@ POST     /addUserComment/:categoryName/:notification/:userId                    
 
 #get Pages
 
-POST     /getCategory                           controllers.Application.getCategory()
-POST     /getEvent/:category                           controllers.Application.getEvent(category: String)
-POST     /getDashBoard/:category                           controllers.Application.getDashBoard(category: String)
-POST     /getUserNotes/:category                           controllers.Application.getUserNotes(category: String)
+GET     /getCategory                           controllers.Application.getCategory()
+GET     /getEvent/:category                           controllers.Application.getEvent(category: String)
+GET     /getDashBoard/:category                           controllers.Application.getDashBoard(category: String)
+GET     /getUserNotes/:category                           controllers.Application.getUserNotes(category: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
