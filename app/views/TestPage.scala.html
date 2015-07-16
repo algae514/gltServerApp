@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+<script>
+
+function subhmitContent(){
+	
+	alert('called ')
+	
+	var catN = escape( document.getElementById('category').value );
+	var catD = escape(document.getElementById('categoryDescription').value ); 
+	 
+	
+	
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', '/'+catN+"/"+catD, true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	
+	xhr.onload = function () {
+	    // do something to response
+	    console.log(this.responseText);
+	};
+	xhr.send('user=person&pwd=password&organization=place&requiredkey=key');
+	
+	
+	
+}
+
+</script>
+
+
+
+
+
+	
+		<fieldset>
+			<legend>Add Category</legend>
+			Base URL <br>
+			<input type="text" id = 'category' name="category"> 
+			<br>
+			
+			value <br> 
+			<input id = 'categoryDescription'
+				type="textarea" name="categoryDescription" > 
+			<br>
+			
+			
+			
+			<br>
+			<button onClick="subhmitContent()"> submit</button>
+		</fieldset>
+	
+</body>
+</html>

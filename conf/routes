@@ -1,0 +1,29 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# display pages
+
+GET     /addCategory                           controllers.Application.addCategoryC()
+GET     /showAddEvent                           controllers.Application.showAddEvent()
+GET     /addDashBoardComment                           controllers.Application.addDashBoardComment()
+GET     /addUserCommentEvent                           controllers.Application.addUserCommentEventC()
+GET     /testPage                           controllers.Application.testPage()
+
+
+
+# insert pages
+POST     /addCategory/:categoryName/:categoryDescription/:rules                           controllers.Application.addCategory(categoryName: String,categoryDescription: String,rules: String)
+POST     /addEvent/:eventName/:time/:categoryName                           controllers.Application.addEvent(eventName: String,time: String,categoryName: String)
+POST     /addDashBoardNotification/:categoryName/:notification                           controllers.Application.addDashBoardNotification(categoryName: String,notification: String)
+POST     /addUserComment/:categoryName/:notification/:userId                           controllers.Application.addUserCommentEvent(categoryName: String,notification: String,userId: String)
+
+#get Pages
+
+POST     /getCategory                           controllers.Application.getCategory()
+POST     /getEvent/:category                           controllers.Application.getEvent(category: String)
+POST     /getDashBoard/:category                           controllers.Application.getDashBoard(category: String)
+POST     /getUserNotes/:category                           controllers.Application.getUserNotes(category: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

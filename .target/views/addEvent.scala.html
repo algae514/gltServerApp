@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+<script>
+
+function subhmitContent(){
+	
+	alert('called ')
+	
+	var catN = escape( document.getElementById('category').value );
+	var catD = escape(document.getElementById('categoryDescription').value );
+	console.log(" time is : "+catD)
+	var catR = escape(document.getElementById('categoryRules').value ); 
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', '/addEvent/'+catN+"/"+catD+"/"+catR, true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	
+	xhr.onload = function () {
+	    // do something to response
+	    console.log(this.responseText);
+	};
+	xhr.send('user=person&pwd=password&organization=place&requiredkey=key');
+	
+	
+	
+}
+
+</script>
+
+
+
+
+
+	
+		<fieldset>
+			<legend>Add Category</legend>
+			Event Name <br>
+			<input type="text" id = 'category' name="category"> 
+			<br>
+			
+			Time <br> 
+			<input id = 'categoryDescription'
+				type="date" name="categoryDescription" > 
+			<br>
+			
+			Category name<br> 
+			<input
+				type="text" name="categoryRules" id="categoryRules" > 
+			<br>
+			
+			<br>
+			<button onClick="subhmitContent()"> submit</button>
+		</fieldset>
+	
+</body>
+</html>
