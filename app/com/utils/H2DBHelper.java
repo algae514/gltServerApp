@@ -194,18 +194,24 @@ public class H2DBHelper {
 	
 	
 	
-	public ArrayList<String> getDashoardNotes(String category)
+	public ArrayList<Comment> getDashoardNotes(String category)
 			throws SQLException {
 		// TODO Auto-generated method stub
-		ArrayList<String> cats = new ArrayList();
+		ArrayList<Comment> cats = new ArrayList();
 		selectDashBoardNotePS.setString(1, category);
 		ResultSet rs = selectDashBoardNotePS.executeQuery();
 
 		while (rs.next()) {
 
 			String notification = rs.getString("notification");
-			cats.add(notification);
+			
+			
+			Comment commetn = new Comment();
+			commetn.commentText = notification;
+			commetn.timeOfComment = rs.getDate("CREATED_DATE")+"";
 			System.out.println("dash notification : " + notification);
+			
+			cats.add(commetn);
 
 		}
 		return cats;

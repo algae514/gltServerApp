@@ -140,7 +140,15 @@ public class Application extends Controller {
 
 	public static Result getDashBoard(String category) {
 		try {
-			ArrayList<String> dashBoardNotes = dbUtil.getDashoardNotes(category);
+			ArrayList<Comment> dashBoardNotes = dbUtil.getDashoardNotes(category);
+			JsonNode json = Json.toJson(dashBoardNotes);
+			response().setHeader("Access-Control-Allow-Origin", "*");
+			
+			System.out.println(" sending DASHBOAD NOTES : \n\n\n "+json);
+			
+			return ok(json);
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
