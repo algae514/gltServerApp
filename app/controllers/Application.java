@@ -21,7 +21,11 @@ import com.utils.H2DBTableCreator;
 
 public class Application extends Controller {
 	
-	private static H2DBHelper dbUtil = H2DBHelper.getInstance();
+	private static H2DBHelper dbUtil;
+	
+	static {
+		dbUtil = H2DBHelper.getInstance();
+	}
 	
 	public static Result testPage() {
 		return ok(TestPage.render());
