@@ -15,7 +15,7 @@ public class H2DBTableCreator {
 	   
 	   
 	   
-	   public static void main(String[] args) {
+	   public void main() {
 		   Connection conn = null;
 		   
 		   try{

@@ -31,7 +31,8 @@ public class Application extends Controller {
 	
 
 	public static Result createDB() {
-		H2DBTableCreator.main(null);
+		H2DBTableCreator h2 = new H2DBTableCreator();
+		h2.main();
 		return ok(addCategory.render());
 	}
 	
