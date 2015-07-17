@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.models.Comment;
 import com.models.Event;
 import com.utils.H2DBHelper;
+import com.utils.H2DBTableCreator;
 
 public class Application extends Controller {
 	
@@ -26,6 +27,13 @@ public class Application extends Controller {
 		return ok(TestPage.render());
 	}
 
+	
+	
+
+	public static Result createDB() {
+		H2DBTableCreator.main(null);
+		return ok(addCategory.render());
+	}
 	
 	
 	public static Result addCategoryC() {
@@ -44,6 +52,10 @@ public class Application extends Controller {
 		return ok(addUserComment.render());
 	}
 
+	
+	
+	
+	
 // add category
 	public static Result addCategory(String categoryName) {
 		System.out.println(" categoryName are : "+categoryName);
