@@ -11,13 +11,13 @@ function subhmitContent(){
 	alert('called ')
 	
 	var catN = escape( document.getElementById('category').value );
-	var catD = escape(document.getElementById('categoryDescription').value ); 
-	var catR = escape(document.getElementById('categoryRules').value ); 
+	//var catD = escape(document.getElementById('categoryDescription').value ); 
+	// var catR = escape(document.getElementById('categoryRules').value ); 
 	
 	
 	
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/addCategory/'+catN+"/"+catD+"/"+catR, true);
+	xhr.open('POST', '/addCategory/'+catN, true);
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	
 	xhr.onload = function () {
@@ -43,15 +43,7 @@ function subhmitContent(){
 			<input type="text" id = 'category' name="category"> 
 			<br>
 			
-			Category Description <br> 
-			<input id = 'categoryDescription'
-				type="textarea" name="categoryDescription" > 
-			<br>
 			
-			Category Rules seperated by semicolon<br> 
-			<input
-				type="textarea" name="categoryRules" id="categoryRules" > 
-			<br>
 			
 			<br>
 			<button onClick="subhmitContent()"> submit</button>

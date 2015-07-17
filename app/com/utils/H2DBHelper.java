@@ -29,15 +29,15 @@ public class H2DBHelper {
 			+ "(?,?,?,?)";
 
 	static final String insertDashBoardNotification = "INSERT INTO DashBoardNotification"
-			+ "(categoryName, notification,  CREATED_DATE) VALUES" + "(?,?,?)";
+			+ "(categoryName, notification, eventName, CREATED_DATE) VALUES" + "(?,?,?,?)";
 
 	static final String insertUserComment = "INSERT INTO UserComment"
 			+ "(categoryName, notification, userId,  CREATED_DATE) VALUES"
 			+ "(?,?,?,?)";
 
-	static final String selectCategory = "SELECT * FROM CATEGORY  ORDER BY CREATED_DATE DESC";
+	static final String selectCategory = "SELECT * FROM CATEGORY";
 	static final String selectEvent = "SELECT * FROM EVENT where categoryName = ? ORDER BY CREATED_DATE DESC";
-	static final String selectDashBoardNotification = "SELECT * FROM DashBoardNotification  where categoryName = ?  ORDER BY CREATED_DATE ASC";
+	static final String selectDashBoardNotification = "SELECT * FROM DashBoardNotification  where categoryName = ?  and eventName = ? ORDER BY CREATED_DATE ASC";
 	static final String selectUserComment = "SELECT * FROM EVENT where categoryName = ?  ORDER BY CREATED_DATE DESC";
 
 	PreparedStatement insertCategoryPS = null;
@@ -117,13 +117,15 @@ public class H2DBHelper {
 	}
 
 	public void saveDashBoardNotification(String categoryName,
-			String notification) throws SQLException {
+			String notification, String eventName ) throws SQLException {
 		// TODO Auto-generated method stub
 		// + "(categoryName, notification,  CREATED_DATE) VALUES"
 
 		insertDashBoardNotePS.setString(1, categoryName);
 		insertDashBoardNotePS.setString(2, notification);
-		insertDashBoardNotePS.setTimestamp(3, getCurrentTimeStamp());
+		insertDashBoardNotePS.setString(3, eventName);
+		insertDashBoardNotePS.setTimestamp(4, getCurrentTimeStamp());
+		
 		insertDashBoardNotePS.executeUpdate();
 		System.out.println(" save dashboard !!!");
 
@@ -157,7 +159,7 @@ public class H2DBHelper {
 
 		while (rs.next()) {
 
-			String CATEGORY = rs.getString("CATEGORY");
+			String CATEGORY = rs.getString("categoryName");
 			cats.add(CATEGORY);
 			System.out.println("CATEGORY : " + CATEGORY);
 
@@ -194,11 +196,16 @@ public class H2DBHelper {
 	
 	
 	
-	public ArrayList<Comment> getDashoardNotes(String category)
+	public ArrayList<Comment> getDashoardNotes(String category,String eventName)
 			throws SQLException {
 		// TODO Auto-generated method stub
 		ArrayList<Comment> cats = new ArrayList();
+		
+		
 		selectDashBoardNotePS.setString(1, category);
+		selectDashBoardNotePS.setString(2, eventName);
+		
+		
 		ResultSet rs = selectDashBoardNotePS.executeQuery();
 
 		while (rs.next()) {

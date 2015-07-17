@@ -12,12 +12,13 @@ function subhmitContent(){
 	
 	var catN = escape( document.getElementById('category').value );
 	var catD = escape(document.getElementById('categoryDescription').value ); 
+	var eventName = escape(document.getElementById('eventName').value ); 
 	 
 	
 	
 	
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/addDashBoardNotification/'+catN+"/"+catD, true);
+	xhr.open('POST', '/addDashBoardNotification/'+catN+"/"+eventName+"/"+catD, true);
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	
 	xhr.onload = function () {
@@ -42,6 +43,13 @@ function subhmitContent(){
 			Category Name <br>
 			<input type="text" id = 'category' name="category"> 
 			<br>
+			
+			Event Name  <br> 
+			<input id = 'eventName'
+				type="textarea" name="categoryDescription" > 
+			<br>
+			
+			
 			
 			Notification <br> 
 			<input id = 'categoryDescription'

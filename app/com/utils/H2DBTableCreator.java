@@ -38,7 +38,7 @@ public class H2DBTableCreator {
 		                   " categoryName VARCHAR(50), " + 
 		                   " categoryDescription VARCHAR(500), " + 
 		                   " rules VARCHAR(1500), " +
-		                   " CREATED_DATE DATE " +
+		                   " CREATED_DATE TIMESTAMP  " +
 		                   ")";
 		      createTable(conn,sql);
 		      
@@ -49,7 +49,7 @@ public class H2DBTableCreator {
 	                   " categoryName VARCHAR(50), " + 
 	                   " eventName VARCHAR(50), " + 
 	                   " time VARCHAR(20), " +
-	                   " CREATED_DATE DATE " +
+	                   " CREATED_DATE TIMESTAMP  " +
 	                   ")";
 		      createTable(conn,sql);
 		      
@@ -57,9 +57,10 @@ public class H2DBTableCreator {
 		      // create DashBoardNotification TABLE
 		      sql = "CREATE TABLE DashBoardNotification  " +
 	                   "(id NUMBER(50), " +
-	                   " categoryName VARCHAR(50), " + 
+	                   " categoryName VARCHAR(50), " +
+	                   " eventName VARCHAR(50), " + 
 	                   " notification VARCHAR(500), " + 
-	                   " CREATED_DATE DATE " +
+	                   " CREATED_DATE TIMESTAMP  " +
 	                   ")";
 		      createTable(conn,sql);
 		      
@@ -70,7 +71,7 @@ public class H2DBTableCreator {
 	                   " categoryName VARCHAR(50), " + 
 	                   " notification VARCHAR(500), " + 
 	                   " userId VARCHAR(50), " +
-	                   " CREATED_DATE DATE " +
+	                   " CREATED_DATE TIMESTAMP  " +
 	                   ")";
 		      createTable(conn,sql);
 		      

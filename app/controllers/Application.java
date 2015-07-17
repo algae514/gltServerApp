@@ -45,12 +45,12 @@ public class Application extends Controller {
 	}
 
 // add category
-	public static Result addCategory(String categoryName,String categoryDescription,String rules) {
+	public static Result addCategory(String categoryName) {
 		System.out.println(" categoryName are : "+categoryName);
-		System.out.println(" categoryDescription are : "+categoryDescription);
-		System.out.println(" rules are : "+rules);
+		/*System.out.println(" categoryDescription are : "+categoryDescription);
+		System.out.println(" rules are : "+rules);*/
 		try {
-			dbUtil.addCategory(categoryName,categoryDescription,rules);
+			dbUtil.addCategory(categoryName,"","");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,11 +74,11 @@ public class Application extends Controller {
 	}
 	
 	
-	public static Result addDashBoardNotification(String categoryName,String notification) {
+	public static Result addDashBoardNotification(String categoryName,String eventName , String notification) {
 		System.out.println(" categoryName are : "+categoryName);
 		System.out.println(" categoryName are : "+notification);
 		try {
-			dbUtil.saveDashBoardNotification(categoryName,notification);
+			dbUtil.saveDashBoardNotification(categoryName,notification,eventName);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -107,6 +107,14 @@ public class Application extends Controller {
 	public static Result getCategory() {
 		try {
 			ArrayList<String> categories = dbUtil.getCategorites();
+			
+			JsonNode json = Json.toJson(categories);
+			response().setHeader("Access-Control-Allow-Origin", "*");
+			System.out.println(" sending categories "+json);
+			return ok(json);
+			
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -138,14 +146,12 @@ public class Application extends Controller {
 
 		
 
-	public static Result getDashBoard(String category) {
+	public static Result getDashBoard(String category,String eventName) {
 		try {
-			ArrayList<Comment> dashBoardNotes = dbUtil.getDashoardNotes(category);
+			ArrayList<Comment> dashBoardNotes = dbUtil.getDashoardNotes(category,eventName);
 			JsonNode json = Json.toJson(dashBoardNotes);
 			response().setHeader("Access-Control-Allow-Origin", "*");
-			
 			System.out.println(" sending DASHBOAD NOTES : \n\n\n "+json);
-			
 			return ok(json);
 			
 			
